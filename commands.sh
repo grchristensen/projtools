@@ -26,6 +26,9 @@ pyproj() {
     elif [ "$1" == "setup" ] && [ "$2" == "xeus-python" ]; then
         echo "y" | jupyter kernelspec uninstall python3
         conda install -y xeus-python notebook -c conda-forge
+    elif [ "$1" == "generate" ] && [ "$2" == "requirements" ]; then
+        cp "$PROJTOOLS_PROJECT_PATH/projtools/environment.yml" "$PROJTOOLS_PROJECT_PATH"
+        cp "$PROJTOOLS_PROJECT_PATH/projtools/requirements.txt" "$PROJTOOLS_PROJECT_PATH"
     else
         echo "Invalid arguments"
         return 1
