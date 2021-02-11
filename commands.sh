@@ -13,7 +13,12 @@ pyproj() {
         conda env create -f "$PROJTOOLS_PROJECT_PATH/environment.yml" -n "$4"
         conda activate "$4"
         pip install -U -r "$PROJTOOLS_PROJECT_PATH/requirements.txt"
-
+    elif [ "$1" == "update" ] && [ "$2" == "environment" ]; then
+        conda env update -f "$PROJTOOLS_PROJECT_PATH/environment.yml"
+        pip install -U -r "$PROJTOOLS_PROJECT_PATH/requirements.txt"
+    else
+        echo "Invalid arguments"
+        return 1
     fi
 }
 
