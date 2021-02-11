@@ -16,6 +16,13 @@ pyproj() {
     elif [ "$1" == "update" ] && [ "$2" == "environment" ]; then
         conda env update -f "$PROJTOOLS_PROJECT_PATH/environment.yml"
         pip install -U -r "$PROJTOOLS_PROJECT_PATH/requirements.txt"
+    elif [ "$1" == "reinstall" ] && [ "$2" == "environment" ]; then
+        if [ -z "$4" ]; then
+            echo "Name for environment not given."
+            return 1
+        fi
+        conda env remove -n "$4"
+        pyproj install environment -n "$4"
     else
         echo "Invalid arguments"
         return 1
