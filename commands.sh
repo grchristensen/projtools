@@ -23,6 +23,9 @@ pyproj() {
         fi
         conda env remove -n "$4"
         pyproj install environment -n "$4"
+    elif [ "$1" == "setup" ] && [ "$2" == "xeus-python" ]; then
+        echo "y" | jupyter kernelspec uninstall python3
+        conda install -y xeus-python notebook -c conda-forge
     else
         echo "Invalid arguments"
         return 1
